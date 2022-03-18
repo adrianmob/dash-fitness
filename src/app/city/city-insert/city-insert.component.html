@@ -1,0 +1,112 @@
+<ng-template #modal>
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalTitle }}</h5>
+    </div>
+    <div class="modal-body">
+  
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Formulario de Información </h6>
+              </div>
+              <div id="formulario">            
+                <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>    
+                  <div class="card-body col-md-12">          
+  
+                    <div class="row">
+                        <div class="col-md-6">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Nombres<span    
+                                      class="mandatoryFieldColor">*</span></label>    
+                              <input type="text" class="form-control" name="name" autofocus    
+                                  [(ngModel)]="City.name" #nameValue="ngModel"    
+                                  [ngClass]="{ 'is-invalid': f.submitted && nameValue.invalid }" required />    
+                              <div *ngIf="f.submitted && nameValue.invalid" class="invalid-feedback">    
+                                  <div *ngIf="nameValue.errors.required || nameValue.pristine==false">Nombre requeridos</div>    
+                              </div>    
+                          </div>    
+                        </div>  
+                        <div class="col-md-6">    
+                            <div class="form-group">    
+                                <label class="col-form-label">N° de clubes<span    
+                                        class="mandatoryFieldColor">*</span></label>    
+                                <input type="text" class="form-control" name="nclubes" autofocus    
+                                    [(ngModel)]="City.nclubes" #nclubesValue="ngModel"    
+                                    [ngClass]="{ 'is-invalid': f.submitted && nclubesValue.invalid }" required />    
+                                <div *ngIf="f.submitted && nclubesValue.invalid" class="invalid-feedback">    
+                                    <div *ngIf="nclubesValue.errors.required || nclubesValue.pristine==false">Nombre requeridos</div>    
+                                </div>    
+                            </div>    
+                          </div> 
+    
+                       
+  
+                  </div>         
+                  
+                  <div class="row">
+                    <div class="col-md-6">    
+                        <div class="form-group">    
+                            <label class="col-form-label">Latitude</label>    
+                            <input type="text" class="form-control" name="latitude"    
+                                [(ngModel)]="City.latitude" #latitudeValue="ngModel"    
+                                [ngClass]="{ 'is-invalid': f.submitted && latitude.invalid }"  />    
+                            <div *ngIf="f.submitted && latitude.invalid" class="invalid-feedback">    
+                                <div *ngIf="latitude.errors.required || latitude.pristine==false">Latitude</div>    
+                            </div>    
+                        </div>    
+                      </div>      
+                      
+                      <div class="col-md-6">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Longitude</label>    
+                              <input type="text" class="form-control" name="longitude"    
+                                  [(ngModel)]="City.longitude" #lastValue="ngModel"    
+                                  [ngClass]="{ 'is-invalid': f.submitted && longitude.invalid }"  />    
+                              <div *ngIf="f.submitted && longitude.invalid" class="invalid-feedback">    
+                                  <div *ngIf="longitude.errors.required || longitude.pristine==false">Longitud</div>    
+                              </div>    
+                          </div>    
+                        </div>      
+                    </div>
+                  </div>
+
+
+                  <div class="row">                    
+                    <div class="col-md-9"> </div>                  
+                      
+                    <div class="col-md-1"> 
+                      <button type="submit" style="margin-left:1px"    
+                      class="btn btn-success">Guardar</button>   
+                    </div>
+                    
+
+                    <div class="col-md-1"> 
+                      <button  type="button" style="margin-left:1px"    
+                      class="btn btn-danger" (click)="close()">Cerrar</button>   
+                    </div>                
+                  </div>
+                  <br>
+                </form>
+              </div>
+
+              <div  class="container center-h center-v spinner" [hidden]=!formSubmitted>
+                <mat-card>
+                  <mat-card-content>
+                    <h2 class="example-h2">Guardando</h2>
+                
+                    <mat-progress-spinner
+                        class="example-margin"
+                        [color]="color"
+                        [mode]="mode"
+                        [value]="value">
+                    </mat-progress-spinner>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+          </div>
+          
+    </div>
+    <div class="modal-footer">
+    
+    </div>
+  </ng-template>
+  

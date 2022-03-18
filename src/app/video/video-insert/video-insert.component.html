@@ -1,0 +1,172 @@
+<ng-template #modal>
+  <div class="modal-header">
+    <h5 class="modal-title">{{ modalTitle }}</h5>
+  </div>
+  <div class="modal-body">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+          Formulario de Información
+        </h6>
+      </div>
+      <div id="formulario">
+        <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="card-body col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-form-label"
+                    >Nombre(s)<span class="mandatoryFieldColor">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    autofocus
+                    [(ngModel)]="Video.name"
+                    #nameValue="ngModel"
+                    [ngClass]="{
+                      'is-invalid': f.submitted && nameValue.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="f.submitted && nameValue.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="
+                        nameValue.errors.required || nameValue.pristine == false
+                      "
+                    >
+                      Nombre requerido
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-form-label"
+                    >Url<span class="mandatoryFieldColor">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="url"
+                    autofocus
+                    [(ngModel)]="Video.url"
+                    #urlValue="ngModel"
+                    [ngClass]="{
+                      'is-invalid': f.submitted && urlValue.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="f.submitted && urlValue.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="
+                        urlValue.errors.required || urlValue.pristine == false
+                      "
+                    >
+                      Dirección requerida
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-form-label"
+                    >Descripción<span class="mandatoryFieldColor"
+                      >*</span
+                    ></label
+                  >
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    [(ngModel)]="Video.description"
+                    required
+                  >
+                  </textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-form-label"
+                    >Categoría<span class="mandatoryFieldColor">*</span></label
+                  >
+                  <select
+                    class="form-control"
+                    name="category"
+                    [(ngModel)]="Video.category"
+                    (ngModelChange)="cambiarCategoria($event)"
+                    required
+                  >
+                    <option value="">Seleccione categoría</option>
+                    <option
+                      *ngFor="let category of categories"
+                      value="{{ category.id }}"
+                    >
+                      {{ category.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-9"></div>
+
+            <div class="col-md-1">
+              <button
+                type="submit"
+                [disabled]="!f.valid"
+                style="margin-left: 1px"
+                class="btn btn-success"
+              >
+                Guardar
+              </button>
+            </div>
+
+            <div class="col-md-1">
+              <button
+                type="button"
+                style="margin-left: 1px"
+                class="btn btn-danger"
+                (click)="close()"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+          <br />
+        </form>
+      </div>
+
+      <div
+        class="container center-h center-v spinner"
+        [hidden]="!formSubmitted"
+      >
+        <mat-card>
+          <mat-card-content>
+            <h2 class="example-h2">Guardando</h2>
+
+            <mat-progress-spinner
+              class="example-margin"
+              [color]="color"
+              [mode]="mode"
+              [value]="value"
+            >
+            </mat-progress-spinner>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer"></div>
+</ng-template>

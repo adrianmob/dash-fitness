@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800"> Nutriologos </h1>
+      <button class="btn btn-primary" (click)="openModal(null, null)">Agregar Nutriologo</button>
+      
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"> Listado de Nutriologos </h6>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>                
+                <th>Nombre</th>                            
+                <th>Apellidos</th>
+                <th>Username</th>
+                <th>Movil</th>
+                <th>Email</th>
+                <th>Editar</th>
+                <th>Eiminar</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let nutri of nutritionistes">
+                    
+                    <td>{{nutri.firstname}}</td> 
+                    <td>{{nutri.lastname}}</td>                     
+                    <td>{{nutri.username}}</td>                     
+                    <td>{{nutri.movil}}</td>                     
+                    <td>{{nutri.email}}</td>                                         
+                    <td><div class="col-md-6"><button class="btn btn-info"  (click)="openModal(nutri.id, nutri)">Editar</button></div></td>                     
+                    <td><div class="col-md-6"><button class="btn btn-danger" (click)="delete(nutri.id)">Borrar</button></div></td>                     
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<modalNutritionist #modalNutritionist [modalConfig]="modalConfig">
+    <!--  body of the modal  -->
+  </modalNutritionist>

@@ -1,0 +1,131 @@
+<ng-template #modal>
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalTitle }}</h5>
+    </div>
+    <div class="modal-body">
+  
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Formulario de Información </h6>
+              </div>
+              <div id="formulario">            
+                <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>    
+                  <div class="card-body col-md-12">          
+  
+                    <div class="row">
+                        <div class="col-md-6">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Nombre<span    
+                                      class="mandatoryFieldColor">*</span></label>    
+                              <input type="text" class="form-control" name="name" autofocus    
+                                  [(ngModel)]="Club.name" #nameValue="ngModel"    
+                                  [ngClass]="{ 'is-invalid': f.submitted && nameValue.invalid }" required />    
+                              <div *ngIf="f.submitted && nameValue.invalid" class="invalid-feedback">    
+                                  <div *ngIf="nameValue.errors.required || nameValue.pristine==false">Nombre requerido</div>    
+                              </div>    
+                          </div>    
+                        </div>  
+                        <div class="col-md-6">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Dirección<span    
+                                        class="mandatoryFieldColor">*</span></label>    
+                                <input type="text" class="form-control" name="address" autofocus    
+                                    [(ngModel)]="Club.address" #addressValue="ngModel"    
+                                    [ngClass]="{ 'is-invalid': f.submitted && addressValue.invalid }" required />    
+                                <div *ngIf="f.submitted && addressValue.invalid" class="invalid-feedback">    
+                                    <div *ngIf="addressValue.errors.required || addressValue.pristine==false">Dirección requerida</div>    
+                                </div>    
+                            </div>    
+                        </div>                         
+                    </div>     
+                    
+                    <div class="row">
+                      <div class="col-md-6">    
+                        <div class="form-group">   
+                          <label class="col-form-label">Ciudad<span    
+                            class="mandatoryFieldColor">*</span></label>   
+                          <select class="form-control" name="ciudad"  [(ngModel)]="Club.ciudad">
+                            <option value="">Seleccione ciudad</option>
+                            <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.name}}</option>
+                          </select>   
+                        </div>  
+                      </div>  
+
+                        <div class="col-md-3">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Email<span    
+                                      class="mandatoryFieldColor">*</span></label>    
+                              <input type="email" class="form-control" name="email" autofocus    required
+                                  [(ngModel)]="Club.email"/>                                  
+                            </div>    
+                        </div>  
+                        <div class="col-md-3">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Teléfono<span    
+                                        class="mandatoryFieldColor">*</span></label>    
+                                <input type="text" class="form-control" name="phone" autofocus    required
+                                    [(ngModel)]="Club.phone" />                                     
+                            </div>    
+                        </div>                         
+                    </div>     
+                  
+                    <div class="row">
+                        <div class="col-md-6">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Latitude</label>    
+                                <input type="text" class="form-control" name="latitude"    
+                                    [(ngModel)]="Club.latitude" />                                    
+                            </div>    
+                        </div>      
+                      
+                        <div class="col-md-6">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Longitude</label>    
+                              <input type="text" class="form-control" name="longitude"    
+                                  [(ngModel)]="Club.longitude"/>                                  
+                          </div>    
+                        </div>      
+                    </div>
+                  </div>
+
+
+                  <div class="row">                    
+                    <div class="col-md-9"> </div>                  
+                      
+                    <div class="col-md-1"> 
+                      <button type="submit" style="margin-left:1px"    
+                      class="btn btn-success">Guardar</button>   
+                    </div>
+                    
+
+                    <div class="col-md-1"> 
+                      <button  type="button" style="margin-left:1px"    
+                      class="btn btn-danger" (click)="close()">Cerrar</button>   
+                    </div>                
+                  </div>
+                  <br>
+                </form>
+              </div>
+
+              <div  class="container center-h center-v spinner" [hidden]=!formSubmitted>
+                <mat-card>
+                  <mat-card-content>
+                    <h2 class="example-h2">Guardando</h2>
+                
+                    <mat-progress-spinner
+                        class="example-margin"
+                        [color]="color"
+                        [mode]="mode"
+                        [value]="value">
+                    </mat-progress-spinner>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+          </div>
+          
+    </div>
+    <div class="modal-footer">
+    
+    </div>
+  </ng-template>
+  

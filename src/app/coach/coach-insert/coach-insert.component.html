@@ -1,0 +1,185 @@
+<ng-template #modal>
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalTitle }}</h5>
+    </div>
+    <div class="modal-body">
+  
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Formulario de Información </h6>
+              </div>
+              <div id="formulario">            
+                <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>    
+                  <div class="card-body col-md-12">          
+  
+                    <div class="row">
+                        <div class="col-md-6">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Nombre(s)<span    
+                                      class="mandatoryFieldColor">*</span></label>    
+                              <input type="text" class="form-control" name="firstname" autofocus    
+                                  [(ngModel)]="Coach.firstname" #nameValue="ngModel"    
+                                  [ngClass]="{ 'is-invalid': f.submitted && nameValue.invalid }" required />    
+                              <div *ngIf="f.submitted && nameValue.invalid" class="invalid-feedback">    
+                                  <div *ngIf="nameValue.errors.required || nameValue.pristine==false">Nombre(s) requerido</div>    
+                              </div>    
+                          </div>    
+                        </div>  
+                        <div class="col-md-6">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Apellido(s)<span    
+                                        class="mandatoryFieldColor">*</span></label>    
+                                <input type="text" class="form-control" name="lastname" autofocus    
+                                    [(ngModel)]="Coach.lastname" #lastameValue="ngModel"    
+                                    [ngClass]="{ 'is-invalid': f.submitted && lastnameValue.invalid }" required />    
+                                <div *ngIf="f.submitted && lastnameValue.invalid" class="invalid-feedback">    
+                                    <div *ngIf="lastnameValue.errors.required || lastnameValue.pristine==false">Apellido(s) requerido</div>    
+                                </div>    
+                            </div>    
+                        </div>                         
+                    </div>     
+                    
+                    <div class="row">
+                        <div class="col-md-6">    
+                          <div class="form-group">    
+                              <label class="col-form-label">Dirección<span    
+                                      class="mandatoryFieldColor">*</span></label>    
+                              <input type="text" class="form-control" name="address" autofocus    
+                                  [(ngModel)]="Coach.address"/>                                  
+                            </div>    
+                        </div>  
+                        <div class="col-md-3">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Teléfono<span    
+                                        class="mandatoryFieldColor">*</span></label>    
+                                <input type="text" class="form-control" name="phone" autofocus    
+                                    [(ngModel)]="Coach.phone" />                                     
+                            </div>    
+                        </div>
+                        <div class="col-md-3">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Móvil<span    
+                                        class="mandatoryFieldColor">*</span></label>    
+                                <input type="text" class="form-control" name="movil" autofocus    
+                                    [(ngModel)]="Coach.movil" />                                     
+                            </div>    
+                        </div>                         
+                    </div>     
+                  
+                    <div class="row">
+                      <div class="col-md-6">    
+                        <div class="form-group">   
+                          <label class="col-form-label">Club<span    
+                            class="mandatoryFieldColor">*</span></label>   
+                          <select class="form-control" name="club"  [(ngModel)]="Coach.club">
+                            <option value="">Seleccione club</option>
+                            <option *ngFor="let club of clubes" value="{{club.id}}">{{club.name}}</option>
+                          </select>   
+                        </div>  
+                      </div>  
+
+                        <div class="col-md-3">    
+                            <div class="form-group">    
+                                <label class="col-form-label">Fecha de nacimiento</label>    
+                                <input type="date" class="form-control" name="birthday"    
+                                    [(ngModel)]="Coach.birthday" />                                    
+                            </div>    
+                        </div>      
+                       
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3">    
+                        <div class="form-group">    
+                            <label class="col-form-label">Email(s)<span    
+                                    class="mandatoryFieldColor">*</span></label>    
+                            <input type="text" class="form-control" name="email"    
+                                [(ngModel)]="Coach.email" #emailValue="ngModel" (blur)="checkValueAlredy('email')"
+                                [ngClass]="{ 'is-invalid': (f.submitted && emailValue.invalid) || emailinvalid}" required />    
+                            <div *ngIf="f.submitted && emailValue.invalid" class="invalid-feedback">    
+                                <div *ngIf="emailValue.errors.required || emailValue.pristine==false">Email requeridos</div>    
+                            </div>   
+                            <div *ngIf="emailinvalid" class="invalid-feedback">                            
+                              <div *ngIf="emailinvalid">Ya existe un usuario con ese email</div>  
+                            </div>
+                            
+                        </div>    
+                      </div> 
+  
+                      <div class="col-md-3">    
+                        <div class="form-group">    
+                            <label class="col-form-label">Username<span    
+                                    class="mandatoryFieldColor">*</span></label>    
+                            <input type="email" class="form-control" name="username"    
+                                [(ngModel)]="Coach.username" #usernameValue="ngModel" (blur)="checkValueAlredy('username')"
+                                [ngClass]="{ 'is-invalid': (f.submitted && usernameValue.invalid) || usernameinvalid }" required />    
+                            <div *ngIf="f.submitted && usernameValue.invalid" class="invalid-feedback">    
+                                <div *ngIf="usernameValue.errors.required || usernameValue.pristine==false">Username requeridos</div>                              
+                            </div>
+                            <div *ngIf="usernameinvalid" class="invalid-feedback">                            
+                              <div *ngIf="usernameinvalid">Ya existe un usuario con ese username</div>  
+                            </div>                          
+                        </div>    
+                      </div> 
+  
+                      <div class="col-md-3">    
+                        <div class="form-group">    
+                            <label class="col-form-label">Password<span    
+                                    class="mandatoryFieldColor">*</span></label>    
+                            <input type="password" class="form-control" name="password"    
+                                [(ngModel)]="Coach.password" #passwordValue="ngModel"    
+                                [ngClass]="{ 'is-invalid': f.submitted && passwordValue.invalid }" required />    
+                            <div *ngIf="f.submitted && passwordValue.invalid" class="invalid-feedback">    
+                                <div *ngIf="passwordValue.errors.required || passwordValue.pristine==false">Password requeridos</div>    
+                            </div>    
+                        </div>    
+                      </div> 
+                      
+                    </div>
+                  </div>
+
+                  
+
+                  
+
+
+                  <div class="row">                    
+                    <div class="col-md-9"> </div>                  
+                      
+                    <div class="col-md-1"> 
+                      <button type="submit" style="margin-left:1px"    
+                      class="btn btn-success">Guardar</button>   
+                    </div>
+                    
+
+                    <div class="col-md-1"> 
+                      <button  type="button" style="margin-left:1px"    
+                      class="btn btn-danger" (click)="close()">Cerrar</button>   
+                    </div>                
+                  </div>
+                  <br>
+                </form>
+              </div>
+
+              <div  class="container center-h center-v spinner" [hidden]=!formSubmitted>
+                <mat-card>
+                  <mat-card-content>
+                    <h2 class="example-h2">Guardando</h2>
+                
+                    <mat-progress-spinner
+                        class="example-margin"
+                        [color]="color"
+                        [mode]="mode"
+                        [value]="value">
+                    </mat-progress-spinner>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+          </div>
+          
+    </div>
+    <div class="modal-footer">
+    
+    </div>
+  </ng-template>
+  

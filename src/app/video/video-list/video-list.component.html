@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Videos</h1>
+    <button class="btn btn-primary" (click)="openModal(null, null)">
+      Agregar Video
+    </button>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Listado de Videos</h6>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoria</th>
+              <th>Ver</th>
+              <th>Editar</th>
+              <th>Eiminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let video of videos">
+              <td>{{ video.name }}</td>
+              <td>{{ video.categoryName }}</td>
+              <td>
+                <div class="col-md-6">
+                  <button class="btn btn-info">
+                    <a
+                      style="color: white"
+                      href="{{ video.url }}"
+                      target="_blank"
+                      >Url</a
+                    >
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div class="col-md-6">
+                  <button
+                    class="btn btn-info"
+                    (click)="openModal(video.id, video)"
+                  >
+                    Editar
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div class="col-md-6">
+                  <button class="btn btn-danger" (click)="delete(video.id)">
+                    Borrar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modalVideo #modalVideo [modalConfig]="modalConfig">
+  <!--  body of the modal  -->
+</modalVideo>

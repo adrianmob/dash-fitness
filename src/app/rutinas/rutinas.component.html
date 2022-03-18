@@ -1,0 +1,261 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Rutinas</h1>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Listado de Socios</h6>
+    </div>
+
+    <div class="card-body col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-form-label"
+              >Socio<span class="mandatoryFieldColor">*</span></label
+            >
+            <select
+              class="form-control"
+              name="category"
+              [(ngModel)]="idSocio"
+              required
+              (ngModelChange)="changeSocio()"
+            >
+              <option value="">Seleccione un socio</option>
+              <option *ngFor="let socio of socios" value="{{ socio.id }}">
+                {{ socio.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="idSocio">
+        <div class="col-md-12">
+          <div>
+            <h2>Lunes</h2>
+          </div>
+          <div class="row" *ngFor="let lune of lunes; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select
+                  class="form-control"
+                  name="category"
+                  [(ngModel)]="lune.value"
+                  required
+                >
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(lunes, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(lunes)">
+            Agregar
+          </button>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <h2>Martes</h2>
+          </div>
+          <div class="row" *ngFor="let marte of martes; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select
+                  class="form-control"
+                  name="category"
+                  [(ngModel)]="marte.value"
+                  required
+                >
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(martes, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(martes)">
+            Agregar
+          </button>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <h2>Miercoles</h2>
+          </div>
+          <div class="row" *ngFor="let miercole of miercoles; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select
+                  class="form-control"
+                  name="category"
+                  [(ngModel)]="miercole.value"
+                  required
+                >
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(miercoles, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(miercoles)">
+            Agregar
+          </button>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <h2>Jueves</h2>
+          </div>
+          <div class="row" *ngFor="let jueve of jueves; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select
+                  class="form-control"
+                  name="category"
+                  [(ngModel)]="jueve.value"
+                  required
+                >
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(jueves, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(jueves)">
+            Agregar
+          </button>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <h2>Viernes</h2>
+          </div>
+          <div class="row" *ngFor="let vierne of viernes; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select
+                  class="form-control"
+                  name="category"
+                  [(ngModel)]="vierne.value"
+                  required
+                >
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(viernes, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(viernes)">
+            Agregar
+          </button>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <h2>Sabado</h2>
+          </div>
+          <div class="row" *ngFor="let sabado of sabados; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select
+                  class="form-control"
+                  name="category"
+                  [(ngModel)]="sabado.value"
+                  required
+                >
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(sabados, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(sabados)">
+            Agregar
+          </button>
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <h2>Domingo</h2>
+          </div>
+          <div class="row" *ngFor="let domingo of domingos; let i = index">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Video<span class="mandatoryFieldColor">*</span></label
+                >
+                <select class="form-control" [(ngModel)]="domingo.value">
+                  <option value="">Seleccione un Video</option>
+                  <option *ngFor="let video of videos" value="{{ video.id }}">
+                    {{ video.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn" (click)="eliminar(domingos, i)">
+              Eliminar
+            </button>
+          </div>
+          <button type="button" class="btn" (click)="agregar(domingos)">
+            Agregar
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="btn" (click)="ver()">guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
